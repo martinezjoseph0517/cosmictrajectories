@@ -1,0 +1,35 @@
+project:
+  type: website
+  output-dir: docs
+
+
+website:
+  title: "Cosmic Trajectories"
+  navbar:
+    logo: Logos/ct_logo.png
+    logo-alt: "Cosmic Trajectories"
+    left:
+      - text: "Trajecta"
+        href: Trajecta.qmd
+      - text: "Market News & Events"
+        href: MarketNews.qmd
+      - text: "Trajecta Insights"
+        href: TrajectaInsights.qmd
+      - text: "Contact"
+        menu:
+          - text: "About"
+            href: AboutPage.qmd
+          - text: "Contact"
+            href: ContactPage.qmd
+
+
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+    css: styles.css
+    favicon: Logos/ct_logo.png
+    include-after-body: _footer.html
+    
+editor: visual

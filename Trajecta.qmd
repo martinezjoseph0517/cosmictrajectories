@@ -1,0 +1,15 @@
+---
+format: html
+---
+
+```{=html}
+<div style="width:100vw; margin-left:calc(50% - 50vw);">
+  <iframe
+    src="https://martinez2k18.shinyapps.io/Trajecta-App-V1/"
+    width="100%"
+    height="850px"
+    frameborder="0"
+    allowfullscreen>
+  </iframe>
+</div>
+```

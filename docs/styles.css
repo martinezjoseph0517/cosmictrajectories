@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@400;600&display=swap');
+
+body {
+  background-color: #0B0B0B;
+  color: #FFFFFF;
+  font-family: "Inter", sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: "Orbitron", sans-serif;
+  color: #FFFFFF;
+  -webkit-text-stroke: 2px #E87500;
+  paint-order: stroke fill;
+}
+
+a {
+  color: #E87500;
+}
+
+a:hover {
+  color: #5FE0B7;
+}
+
+.card {
+  background: #111111;
+  border: 1px solid #1F1F1F;
+  border-left: 3px solid #E87500;
+}
+
+.card:hover {
+  border-left: 3px solid #5FE0B7;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+  background-color: #000000 !important;
+  border-bottom: 3px solid #E87500;
+}
+
+/* Brand / site title */
+.navbar-brand,
+.navbar .navbar-brand {
+  color: #FFFFFF !important;
+  font-family: "Orbitron", sans-serif;
+}
+
+.navbar-brand img {
+  height: 36px;
+  width: auto;
+}
+
+.navbar-brand:hover {
+  color: #E87500 !important;
+}
+
+/* Nav links */
+.navbar-nav .nav-link,
+.navbar-nav .nav-item > .nav-link {
+  color: #FFFFFF !important;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus,
+.navbar-nav .nav-item.active > .nav-link {
+  color: #E87500 !important;
+}
+
+/* Dropdown menu */
+.navbar-nav .dropdown-menu {
+  background-color: #000000;
+  border: 1px solid #E87500;
+}
+
+.navbar-nav .dropdown-item {
+  color: #FFFFFF;
+}
+
+.navbar-nav .dropdown-item:hover,
+.navbar-nav .dropdown-item:focus {
+  background-color: #E87500;
+  color: #000000;
+}
+
+/* Toggle button (mobile hamburger) */
+.navbar-toggler {
+  border-color: #FFFFFF;
+}
+
+.navbar-toggler-icon {
+  filter: invert(1);
+}
+
+
