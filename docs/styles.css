@@ -90,4 +90,20 @@ a:hover {
   filter: invert(1);
 }
 
+/* Custom Footer*/
+.custom-footer {
+  background-color: #000000;
+  border-top: 4px solid #E87500;
+  padding: 20px 0;
+  width: 110vw;
+  margin-left: calc(50% - 50vw);
+}
 
+.custom-footer-inner {
+  width: 100%;
+  text-align: center;
+}
+
+.footer-logo {
+  max-height: 60px;
+}

@@ -1,30 +1,9 @@
 [
   {
-    "objectID": "HomePage.html",
-    "href": "HomePage.html",
-    "title": "Cosmic Trajectories",
-    "section": "",
-    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org.\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "HomePage.html#quarto",
-    "href": "HomePage.html#quarto",
-    "title": "Cosmic Trajectories",
-    "section": "",
-    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org.\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "Index.html",
-    "href": "Index.html",
+    "objectID": "index.html",
+    "href": "index.html",
     "title": "Cosmic Trajectories",
     "section": "",
     "text": "TBD Design"
-  },
-  {
-    "objectID": "Index.html#quarto",
-    "href": "Index.html#quarto",
-    "title": "Cosmic Trajectories",
-    "section": "",
-    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org.\n\n1 + 1\n\n[1] 2"
   }
 ]
