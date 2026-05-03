@@ -14,8 +14,10 @@ website:
       - text: "Market News & Events"
         href: MarketNews.qmd
       - text: "Trajecta Insights"
-        href: TrajectaInsights.qmd
-      - text: "Contact"
+        menu:
+          - text: "Founder's Blog" 
+            href: FounderBlog.qmd
+      - text: "Misc."
         menu:
           - text: "About"
             href: AboutPage.qmd
