@@ -1,4 +1,6 @@
 ---
-title: "AboutPage"
+title: "About Cosmic Trajectories"
 format: html
 ---
+
+Cosmic Trajectories is a graduate-level project focused on building a more streamlined and practical way for investment advisor representatives to analyze portfolios. Right now, advisors often have to juggle multiple tools—client data systems, market research platforms, and spreadsheets—just to get a full picture of a portfolio, which can be time-consuming and limiting . This project explores what it would look like to bring those pieces together into a single platform that combines user-input portfolio data with live market data from TradingView, making it easier to run analyses, generate visualizations, and produce reports in one place. The app is being developed as a modular Shiny application with a strong emphasis on clean data structure and user-specific workflows, allowing each user to manage their own portfolios while experimenting with different analytical tools . Overall, the goal of Cosmic Trajectories is not just to build a working tool, but to prototype a more efficient and flexible approach to portfolio analysis that could eventually expand into a broader ecosystem of advisor-focused financial tools.

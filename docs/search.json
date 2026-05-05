@@ -5,5 +5,40 @@
     "title": "Cosmic Trajectories",
     "section": "",
     "text": "TBD Design"
+  },
+  {
+    "objectID": "MarketNews.html",
+    "href": "MarketNews.html",
+    "title": "Market News & Events",
+    "section": "",
+    "text": "^SPX · WCB · Last: USD $7200.75 · 41 bars · 60d\n\n\nFinancial TimesSearch FT for S&P 500 newsYahoo FinanceAll S&P 500 news on Yahoo FinanceS&P 500 financials on Yahoo FinanceZacksS&P 500 earnings estimates on Zacks"
+  },
+  {
+    "objectID": "ContactPage.html",
+    "href": "ContactPage.html",
+    "title": "Contact",
+    "section": "",
+    "text": "I am Joseph Martinez, a detail-oriented financial services professional with Series 7 and 63 licenses, advanced Excel modeling skills, and client-facing experience at both broker/dealers and registered investment advisors. Adept at supporting investment operations, account administration, and high-volume client communications. Currently pursuing an MS in Social Data Analytics, enhancing analytical acumen and data reporting capabilities. Eager to contribute to a high-performing, collaborative investment advisory team focused on exceptional client outcomes.\nUniversity Contact Information:\n\njoseph.martinez@utdallas.edu\n\nPersonal Contact Information:\n\nmartinez.joseph@me.com\n(210) 837-0859"
+  },
+  {
+    "objectID": "FounderBlog.html",
+    "href": "FounderBlog.html",
+    "title": "Founder’s Blog",
+    "section": "",
+    "text": "Every voyage begins with a dream of the sea. Cosmic Trajectories is an experiment to see how easily financial representatives can build out portfolio analysis tools in house. The idea would be to see if such a process would create a more flexible data ecosystem for boutique financial advisers and portfolio managers."
+  },
+  {
+    "objectID": "FounderBlog.html#may-4th-2026---the-pilot-run",
+    "href": "FounderBlog.html#may-4th-2026---the-pilot-run",
+    "title": "Founder’s Blog",
+    "section": "",
+    "text": "Every voyage begins with a dream of the sea. Cosmic Trajectories is an experiment to see how easily financial representatives can build out portfolio analysis tools in house. The idea would be to see if such a process would create a more flexible data ecosystem for boutique financial advisers and portfolio managers."
+  },
+  {
+    "objectID": "AboutPage.html",
+    "href": "AboutPage.html",
+    "title": "About Cosmic Trajectories",
+    "section": "",
+    "text": "Cosmic Trajectories is a graduate-level project focused on building a more streamlined and practical way for investment advisor representatives to analyze portfolios. Right now, advisors often have to juggle multiple tools—client data systems, market research platforms, and spreadsheets—just to get a full picture of a portfolio, which can be time-consuming and limiting . This project explores what it would look like to bring those pieces together into a single platform that combines user-input portfolio data with live market data from TradingView, making it easier to run analyses, generate visualizations, and produce reports in one place. The app is being developed as a modular Shiny application with a strong emphasis on clean data structure and user-specific workflows, allowing each user to manage their own portfolios while experimenting with different analytical tools . Overall, the goal of Cosmic Trajectories is not just to build a working tool, but to prototype a more efficient and flexible approach to portfolio analysis that could eventually expand into a broader ecosystem of advisor-focused financial tools."
   }
 ]

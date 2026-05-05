@@ -1,4 +1,8 @@
 ---
-title: "TrajectaInsights"
+title: "Founder's Blog"
 format: html
 ---
+
+## May 4th, 2026 - The Pilot Run
+
+Every voyage begins with a dream of the sea. Cosmic Trajectories is an experiment to see how easily financial representatives can build out portfolio analysis tools in house. The idea would be to see if such a process would create a more flexible data ecosystem for boutique financial advisers and portfolio managers.

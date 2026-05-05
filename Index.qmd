@@ -1,7 +1,28 @@
 ---
-Title: Home Page
+format:
+  html:
+    theme: darkly
+    page-layout: full
+    toc: false
 ---
 
+<style>
+.hero {
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  padding: 2rem;
+}
 
+.hero img {
+  width: min(95vw, 1400px);
+  height: auto;
+  display: block;
+}
+</style>
 
-TBD Design
+::: {.hero}
+![](Logos/ct_homepage.png)
+:::

@@ -1,4 +1,211 @@
 ---
-title: "MarketNews"
+title: "Market News & Events"
 format: html
+execute:
+  echo: false
+  warning: false
+  message: false
 ---
+
+
+```{r}
+library(httr2)
+library(dplyr)
+library(tibble)
+library(plotly)
+library(lubridate)
+library(htmltools)
+
+ticker <- "^SPX"
+range_label <- "60d"
+
+RANGE_OPTIONS <- list(
+  "1d"   = list(days = 1,   range = "1d",  interval = "5m"),
+  "5d"   = list(days = 5,   range = "5d",  interval = "15m"),
+  "10d"  = list(days = 10,  range = NULL,  interval = "1h"),
+  "20d"  = list(days = 20,  range = NULL,  interval = "1d"),
+  "30d"  = list(days = 30,  range = NULL,  interval = "1d"),
+  "60d"  = list(days = 60,  range = NULL,  interval = "1d"),
+  "90d"  = list(days = 90,  range = NULL,  interval = "1d"),
+  "120d" = list(days = 120, range = NULL,  interval = "1d"),
+  "180d" = list(days = 180, range = NULL,  interval = "1d"),
+  "270d" = list(days = 270, range = NULL,  interval = "1d"),
+  "1Y"   = list(days = 365, range = NULL,  interval = "1d"),
+  "YTD"  = list(days = NA,  range = "ytd", interval = "1d")
+)
+
+`%||%` <- function(x, y) {
+  if (is.null(x)) y else x
+}
+
+fetch_stock_data <- function(ticker, range_label) {
+  opt <- RANGE_OPTIONS[[range_label]]
+
+  base_url <- paste0(
+    "https://query1.finance.yahoo.com/v8/finance/chart/",
+    URLencode(ticker, reserved = TRUE)
+  )
+
+  req <- request(base_url)
+
+  if (!is.null(opt$range)) {
+    req <- req |>
+      req_url_query(
+        range = opt$range,
+        interval = opt$interval
+      )
+  } else {
+    end_time <- as.integer(Sys.time())
+    start_time <- end_time - as.integer(opt$days * 24 * 60 * 60)
+
+    req <- req |>
+      req_url_query(
+        period1 = start_time,
+        period2 = end_time,
+        interval = opt$interval
+      )
+  }
+
+  resp <- req |>
+    req_headers(Accept = "application/json") |>
+    req_perform()
+
+  json <- resp_body_json(resp, simplifyVector = FALSE)
+
+  result <- json$chart$result[[1]]
+
+  if (is.null(result)) {
+    err <- json$chart$error$description %||% "No data returned."
+    stop(err)
+  }
+
+  timestamps <- unlist(result$timestamp)
+  quote <- result$indicators$quote[[1]]
+
+  rows <- tibble(
+    datetime = as.POSIXct(timestamps, origin = "1970-01-01", tz = "UTC"),
+    open     = unlist(quote$open),
+    high     = unlist(quote$high),
+    low      = unlist(quote$low),
+    close    = unlist(quote$close),
+    volume   = unlist(quote$volume)
+  ) |>
+    filter(!is.na(close))
+
+  meta <- result$meta
+
+  list(
+    rows = rows,
+    meta = list(
+      currency     = meta$currency %||% "USD",
+      exchangeName = meta$exchangeName %||% "",
+      lastPrice    = meta$regularMarketPrice %||% NA_real_
+    )
+  )
+}
+
+stock <- fetch_stock_data(ticker, range_label)
+
+rows <- stock$rows
+meta <- stock$meta
+
+last_price <- if (!is.na(meta$lastPrice)) {
+  meta$lastPrice
+} else {
+  tail(rows$close, 1)
+}
+
+vol_colors <- ifelse(
+  seq_along(rows$close) == 1,
+  "#90caf9",
+  ifelse(rows$close >= dplyr::lag(rows$close, default = rows$close[1]), "#a5d6a7", "#ef9a9a")
+)
+
+plot_ly() |>
+  add_lines(
+    data = rows,
+    x = ~datetime,
+    y = ~close,
+    name = ticker,
+    line = list(color = "#0057b8", width = 2),
+    hovertemplate = "<b>%{x}</b><br>Close: $%{y:.2f}<extra></extra>",
+    yaxis = "y"
+  ) |>
+  add_bars(
+    data = rows,
+    x = ~datetime,
+    y = ~volume,
+    name = "Volume",
+    marker = list(color = vol_colors),
+    opacity = 0.75,
+    hovertemplate = "Vol: %{y:,.0f}<extra></extra>",
+    yaxis = "y2"
+  ) |>
+  layout(
+    title = list(
+      text = paste0("<b>", ticker, "</b> — ", range_label),
+      x = 0.02
+    ),
+    xaxis = list(
+      type = "date",
+      showgrid = TRUE,
+      gridcolor = "#eef0f4",
+      rangeslider = list(visible = FALSE)
+    ),
+    yaxis = list(
+      title = "Price (USD)",
+      domain = c(0.26, 1),
+      showgrid = TRUE,
+      gridcolor = "#eef0f4",
+      tickprefix = "$"
+    ),
+    yaxis2 = list(
+      title = "Volume",
+      domain = c(0, 0.21),
+      showgrid = FALSE,
+      side = "right"
+    ),
+    hovermode = "x unified",
+    showlegend = FALSE,
+    plot_bgcolor = "#fff",
+    paper_bgcolor = "#fff",
+    margin = list(t = 50, b = 35, l = 60, r = 55)
+  ) |>
+  config(
+    responsive = TRUE,
+    displayModeBar = TRUE,
+    modeBarButtonsToRemove = c("lasso2d", "select2d"),
+    toImageButtonOptions = list(
+      format = "png",
+      filename = paste0(ticker, "_", range_label),
+      scale = 2
+    )
+  )
+
+HTML(paste0(
+  "<p><strong>", ticker, "</strong>",
+  " · ", meta$exchangeName,
+  " · Last: ", meta$currency, " $", round(last_price, 2),
+  " · ", nrow(rows), " bars",
+  " · ", range_label,
+  "</p>"
+))
+
+HTML(paste0(
+  '<h3>Financial Times</h3>',
+  '<p><a href="https://www.ft.com/search?q=', URLencode("S&P 500"), '" target="_blank">',
+  'Search FT for ', "S&P 500", ' news</a></p>',
+
+  '<h3>Yahoo Finance</h3>',
+  '<p><a href="https://finance.yahoo.com/quote/', "S&P 500", '/news/" target="_blank">',
+  'All ', "S&P 500", ' news on Yahoo Finance</a></p>',
+
+  '<p><a href="https://finance.yahoo.com/quote/', "S&P 500", '/financials/" target="_blank">',
+  "S&P 500", ' financials on Yahoo Finance</a></p>',
+
+  '<h3>Zacks</h3>',
+  '<p><a href="https://www.zacks.com/stock/quote/', "S&P 500", '/detailed-earning-estimates" target="_blank">',
+  "S&P 500", ' earnings estimates on Zacks</a></p>'
+))
+
+```
